@@ -8,6 +8,7 @@ from tweepy import OAuthHandler
 from tweepy import Stream
 from elasticsearch import Elasticsearch
 
+import os
 import json 
 import pymongo
 import tw_credentials
@@ -101,6 +102,7 @@ class StdOutListener(StreamListener):
             if self.counter < self.limit:
                 return True
             else:
+                os.system("/usr/local/bin/transporter/transporter-0.5.2-linux-amd64 run /usr/local/bin/transporter/pipeline.js")
                 return False
         except BaseException as e:
             print("Error on_data %s" % str(e))
